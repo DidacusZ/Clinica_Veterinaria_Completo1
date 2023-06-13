@@ -6,3 +6,11 @@ C:\Users\Equipo\Desktop\CLASE\PROGRAMACION\4º evaluacion (objetos)\Clinica_Vete
 C:\Users\Equipo\Desktop\CLASE\PROGRAMACION\4º evaluacion (objetos)\Clinica_Veterinaria_Completo1\Clinica_Veterinaria_Completo1\bin\Debug\Clinica_Veterinaria_Completo1.pdb
 C:\Users\Equipo\Desktop\CLASE\PROGRAMACION\4º evaluacion (objetos)\Clinica_Veterinaria_Completo1\Clinica_Veterinaria_Completo1\obj\Debug\Clinica_Veterinaria_Completo1.exe
 C:\Users\Equipo\Desktop\CLASE\PROGRAMACION\4º evaluacion (objetos)\Clinica_Veterinaria_Completo1\Clinica_Veterinaria_Completo1\obj\Debug\Clinica_Veterinaria_Completo1.pdb
+C:\Users\EQUIPO\Desktop\Recuperación C#\Clinica_Veterinaria_Completo1\Clinica_Veterinaria_Completo1\bin\Debug\Clinica_Veterinaria_Completo1.exe.config
+C:\Users\EQUIPO\Desktop\Recuperación C#\Clinica_Veterinaria_Completo1\Clinica_Veterinaria_Completo1\bin\Debug\Clinica_Veterinaria_Completo1.exe
+C:\Users\EQUIPO\Desktop\Recuperación C#\Clinica_Veterinaria_Completo1\Clinica_Veterinaria_Completo1\bin\Debug\Clinica_Veterinaria_Completo1.pdb
+C:\Users\EQUIPO\Desktop\Recuperación C#\Clinica_Veterinaria_Completo1\Clinica_Veterinaria_Completo1\obj\Debug\Clinica_Veterinaria_Completo1.csproj.AssemblyReference.cache
+C:\Users\EQUIPO\Desktop\Recuperación C#\Clinica_Veterinaria_Completo1\Clinica_Veterinaria_Completo1\obj\Debug\Clinica_Veterinaria_Completo1.csproj.SuggestedBindingRedirects.cache
+C:\Users\EQUIPO\Desktop\Recuperación C#\Clinica_Veterinaria_Completo1\Clinica_Veterinaria_Completo1\obj\Debug\Clinica_Veterinaria_Completo1.csproj.CoreCompileInputs.cache
+C:\Users\EQUIPO\Desktop\Recuperación C#\Clinica_Veterinaria_Completo1\Clinica_Veterinaria_Completo1\obj\Debug\Clinica_Veterinaria_Completo1.exe
+C:\Users\EQUIPO\Desktop\Recuperación C#\Clinica_Veterinaria_Completo1\Clinica_Veterinaria_Completo1\obj\Debug\Clinica_Veterinaria_Completo1.pdb

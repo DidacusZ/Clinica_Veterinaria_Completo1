@@ -10,6 +10,6 @@ namespace Clinica_Veterinaria_Completo1.servicios
     {
         int Menu();
 
-        void Error(string txt);
+        
     }
 }

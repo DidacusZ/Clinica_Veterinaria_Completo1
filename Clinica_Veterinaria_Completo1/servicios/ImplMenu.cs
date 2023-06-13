@@ -35,12 +35,6 @@ namespace Clinica_Veterinaria_Completo1.servicios
 
             return CapturaNumPulsado("\t\t\tPulse su opción", 0, 2);
         }
-
-        //muestra un mensaje 
-        public void Error(string txt)
-        {
-            Console.Write("\n\n\t\t{0}....", txt);
-            Console.ReadKey(true);
-        }
+                
     }
 }

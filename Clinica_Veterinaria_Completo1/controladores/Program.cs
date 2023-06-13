@@ -18,11 +18,18 @@ namespace Clinica_Veterinaria_Completo1
 
             //implementaciones con interfaz
             InterfazMenu implMenu = new ImplMenu();
+            InterfazPaciente implPaciente = new ImplPaciente();
 
             //lista de pacientes
             List<Paciente> listaClinica = new List<Paciente>();
 
+            Paciente paciente = new Paciente();
 
+            paciente = new Paciente("perro","6111122331","2-2-1","12");
+            listaClinica.Add(paciente);
+
+            paciente = new Paciente("gato", "311213", "23-231-12", "421");
+            listaClinica.Add(paciente);
 
             try
             {
@@ -34,17 +41,17 @@ namespace Clinica_Veterinaria_Completo1
                     {
                         //listar pacientes
                         case 1:
-
+                            implPaciente.ListarPacientes(listaClinica);
                             break;
 
                         //ingresar paciente
                         case 2:
-
+                            implPaciente.IngresoPaciente(listaClinica);
                             break;
 
-                        //borrar paciente
+                        //Alta paciente
                         case 3:
-
+                            implPaciente.AltaPaciente(listaClinica);
                             break;
 
                         //salir
@@ -53,18 +60,17 @@ namespace Clinica_Veterinaria_Completo1
 
                         //control error
                         default:
-                            implMenu.Error("Opción no válida, pulsa una tecla para volver al menu");
+                            implPaciente.Error("Opción no válida, pulsa una tecla para volver al menu");
                             break;
                     }
                 } while (opcion != 0);
             }
             catch (Exception ex)
             {
-
-                implMenu.Error("ERROR GENERAL");
+                implPaciente.Error("ERROR GENERAL");
             }
 
-            implMenu.Error("Pulsa una tecla para SALIR");
+            implPaciente.Error("Pulsa una tecla para SALIR");
         }
     }
 }
