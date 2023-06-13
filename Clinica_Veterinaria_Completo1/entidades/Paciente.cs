@@ -21,7 +21,7 @@ namespace Clinica_Veterinaria_Completo1.entidades
 
         }
 
-        //constructor con todos los atributos
+        //constructor con todos los atributos     //comentar
         public Paciente(string nombre, string telefonoDuenio, string fechaIngreso, string fechaAlta)
         {
             this.nombre = nombre;

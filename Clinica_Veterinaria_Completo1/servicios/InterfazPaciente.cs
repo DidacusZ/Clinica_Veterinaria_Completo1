@@ -10,12 +10,14 @@ namespace Clinica_Veterinaria_Completo1.servicios
     
     internal interface InterfazPaciente
     {
+        //el fichero siempre tiene que estar actualizado
+
+
         //1
         //con cabecera en la primera linea
         //todos los datos separados por comas
         //si no hay fecha salida se rellena con '----'
         void ListarPacientes(List<Paciente> lista);
-
 
         //2
         //Pide todos los datos
@@ -28,21 +30,15 @@ namespace Clinica_Veterinaria_Completo1.servicios
         //te permite modificar la fecha de salida si el usuario quiere (PreguntaSiNo)
         //al modificarlo se modifica el paciente en la lista y en el fichero
         List<Paciente> AltaPaciente(List<Paciente> lista);
+        
 
-        //el fichero siempre tiene que estar actualizado
-
-
-
-
-
-
+        //carga la lista con todos los pacientes del fichero
+        List<Paciente> CargarLista(List<Paciente> lista);
 
         //captura solo numeros en el rango pedido
         int CapturaEntero(string texto, int min, int max);
 
-
         //muestra un mensaje (para controlar errores)
         void Error(string txt);
-
     }
 }

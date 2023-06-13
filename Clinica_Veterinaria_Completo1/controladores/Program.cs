@@ -12,7 +12,6 @@ namespace Clinica_Veterinaria_Completo1
     {
         static void Main(string[] args)
         {
-
             //variables
             int opcion;
 
@@ -23,13 +22,8 @@ namespace Clinica_Veterinaria_Completo1
             //lista de pacientes
             List<Paciente> listaClinica = new List<Paciente>();
 
-            Paciente paciente = new Paciente();
-
-            paciente = new Paciente("perro","6111122331","2-2-1","12");
-            listaClinica.Add(paciente);
-
-            paciente = new Paciente("gato", "311213", "23-231-12", "421");
-            listaClinica.Add(paciente);
+            //cargo la lista
+            implPaciente.CargarLista(listaClinica);
 
             try
             {
@@ -65,7 +59,7 @@ namespace Clinica_Veterinaria_Completo1
                     }
                 } while (opcion != 0);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 implPaciente.Error("ERROR GENERAL");
             }
