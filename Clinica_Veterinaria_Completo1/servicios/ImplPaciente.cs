@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Veterinaria_Completo1.servicios
 {
-    internal interface InterfazMenu
+    internal class ImplPaciente:InterfazPaciente
     {
-        int Menu();
-
-        void Error(string txt);
     }
 }

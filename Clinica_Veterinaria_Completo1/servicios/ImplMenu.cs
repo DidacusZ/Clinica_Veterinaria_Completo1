@@ -8,12 +8,14 @@ namespace Clinica_Veterinaria_Completo1.servicios
 {
     internal class ImplMenu : InterfazMenu
     {
+        //captura el caracter pulsado
         private int CapturaNumPulsado(string mensaje, int min, int max)
         {
             Console.Write("{0} [{1}...{2}]:", mensaje, min, max);
             return Console.ReadKey(true).KeyChar - '0';
         }
 
+        //muestra el menu
         public int Menu()
         {
             Console.Clear();
@@ -21,17 +23,24 @@ namespace Clinica_Veterinaria_Completo1.servicios
             Console.WriteLine("\t\t\t╔═════════════════════╗");
             Console.WriteLine("\t\t\t║   MENÚ de PUERTA    ║");
             Console.WriteLine("\t\t\t╠═════════════════════╣");
-            Console.WriteLine("\t\t\t║  1) Nueva persona   ║");
+            Console.WriteLine("\t\t\t║ 1) Listar Pacientes ║");
             Console.WriteLine("\t\t\t║                     ║");
-            Console.WriteLine("\t\t\t║ 2) Mostrar personas ║");
-            Console.WriteLine("\t\t\t║          y          ║");
-            Console.WriteLine("\t\t\t║ escribir en fichero ║");
+            Console.WriteLine("\t\t\t║ 2) Ingresar Paciente║");
+            Console.WriteLine("\t\t\t║                     ║");
+            Console.WriteLine("\t\t\t║ 3) Alta Paciente    ║");
             Console.WriteLine("\t\t\t║_____________________║");
             Console.WriteLine("\t\t\t║                     ║");
             Console.WriteLine("\t\t\t║     0) Salir        ║");
             Console.WriteLine("\t\t\t╚═════════════════════╝");
 
             return CapturaNumPulsado("\t\t\tPulse su opción", 0, 2);
+        }
+
+        //muestra un mensaje 
+        public void Error(string txt)
+        {
+            Console.Write("\n\n\t\t{0}....", txt);
+            Console.ReadKey(true);
         }
     }
 }
