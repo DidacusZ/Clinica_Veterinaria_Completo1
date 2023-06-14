@@ -15,15 +15,6 @@ namespace Clinica_Veterinaria_Completo1.servicios
             string telefonoParaBorar = Pedir("Introduce el telefono del dueño de la mascota que quieras dar de alta");
             bool verdad = true;
 
-            /*
-            //prueba
-            string[] lines = File.ReadAllLines("PacientesClinica.txt");
-
-            lines[1] = "lineaaaaaaaaaaaaaaa cambiada";
-
-            File.WriteAllLines("PacientesClinica.txt", lines);
-            */
-
             for (int i = 0; i < lista.Count; i++)//recorre la lista
             {
                 if(lista[i].TelefonoDuenio.Equals(telefonoParaBorar))//comprueba si el telefono coincide con el solicitado
@@ -34,7 +25,7 @@ namespace Clinica_Veterinaria_Completo1.servicios
 
                     if (PreguntaSiNo("Estas seguro de que quieres dar de alta a este paciente"))
                     {
-                        lista[i].FechaAlta = Pedir("Introduce la Fecha de alta");
+                        lista[i].FechaAlta = PedirFecha("alta");
                         Error("¡¡ Has dado de alta al Pacient !!");
                     }
                     //lista.RemoveAt(i);//elimina esa posicion de la lista
@@ -44,31 +35,35 @@ namespace Clinica_Veterinaria_Completo1.servicios
 
             if(verdad)
                 Error("No existe un dueño con ese telefono");
+            else
+            {
+                //borramos el fichero y creamos uno nuevo
+                StreamWriter sw = File.CreateText("PacientesClinica.txt");
+                sw.WriteLine("Nombre,Telefono,FechaIngreso,FechaAlta");//cabecera
 
+                for (int i = 0; i < lista.Count; i++)//recorre la lista
+                    sw.WriteLine(lista[i].ToString());//escribe lista en fichero
+
+                sw.Close();
+            }
             return lista;
         }
 
         public List<Paciente> IngresoPaciente(List<Paciente> lista)
         {
             Paciente paciente = new Paciente();
-            string fecha;
 
             paciente.Nombre = Pedir("Nombre de la mascota");
             paciente.TelefonoDuenio = Pedir("Telefono del dueño");
-            paciente.FechaIngreso = Pedir("Fecha de ingreso");
+            paciente.FechaIngreso = PedirFecha("ingreso");
 
-            fecha = Pedir("Fecha de alta");
-            if (fecha == "")//controlamos la fecha vacía
-                fecha = "------";
-
-            paciente.FechaAlta = fecha;
-            lista.Add(paciente);
-
+            paciente.FechaAlta = "------";
+            
             //Guardar datos en fichero
             StreamWriter sw;
 
             //comprueba si existe el fichero para saber si escribir la cabecera o no
-            if (File.Exists("PacientesClinica.txt"))            
+            if (File.Exists("PacientesClinica.txt"))
                 sw = File.AppendText("PacientesClinica.txt");// AppendText para escribir sin borrar el fichero           
             else
             {
@@ -76,14 +71,11 @@ namespace Clinica_Veterinaria_Completo1.servicios
                 sw.WriteLine("Nombre,Telefono,FechaIngreso,FechaAlta");
             }
 
-            //StreamWriter sw = File.AppendText("PacientesClinica.txt");
-            //    if (!(File.Exists("PacientesClinica.txt")))
-            //        sw.WriteLine("Nombre,Telefono,FechaIngreso,FechaAlta");            
-
             sw.WriteLine(paciente.ToString());
             sw.Close();
 
-            Error("Paciente ingresado con exito en la lista y en le fichero");            
+            lista.Add(paciente);
+            Error("Paciente ingresado con exito");            
             return lista;
         }
 
@@ -98,40 +90,40 @@ namespace Clinica_Veterinaria_Completo1.servicios
             Console.ReadKey(true);
         }
 
-
         public List<Paciente> CargarLista(List<Paciente> lista)
         {
-            StreamReader sr = new StreamReader("PacientesClinica.txt", Encoding.Default);//asi      
-            List<string> listaLineas = new List<string>();
-
-            //leo todo el fichero            
-            while (!(sr.EndOfStream)) // Mientras no estoy en el final del fichero
+            if (File.Exists("PacientesClinica.txt"))
             {
-                string linea;
-                linea = sr.ReadLine();
-                Console.WriteLine(linea);
-                listaLineas.Add(linea); // guardo en la lista de todas las lineas del fichero
+                StreamReader sr = new StreamReader("PacientesClinica.txt", Encoding.Default);//asi      
+                List<string> listaLineas = new List<string>();
+
+                //leo todo el fichero            
+                while (!(sr.EndOfStream)) // Mientras no estoy en el final del fichero
+                {
+                    string linea;
+                    linea = sr.ReadLine();
+                    Console.WriteLine(linea);
+                    listaLineas.Add(linea); // guardo en la lista de todas las lineas del fichero
+                }
+                sr.Close();
+                for (int i = 1; i < listaLineas.Count; i++)//empezamos desde i=1 para omitir la cabecera
+                {
+                    string[] vLineas = listaLineas[i].Split(','); // separo los campos en el vector
+
+                    //guardamos los campos en el objeto persona
+                    Paciente paciente = new Paciente();
+
+                    paciente.Nombre = vLineas[0];
+                    paciente.TelefonoDuenio = vLineas[1];
+                    paciente.FechaIngreso = vLineas[2];
+                    paciente.FechaAlta = vLineas[3];
+
+                    //añadimos objeto a lista              
+                    lista.Add(paciente);
+                }                
             }
-
-            for (int i = 1; i < listaLineas.Count; i++)//empezamos desde i=1 para omitir la cabecera
-            {
-                string[] vLineas = listaLineas[i].Split(','); // separo los campos en el vector
-
-                //guardamos los campos en el objeto persona
-                Paciente paciente = new Paciente();
-
-                paciente.Nombre = vLineas[0];
-                paciente.TelefonoDuenio = vLineas[1];
-                paciente.FechaIngreso = vLineas[2];
-                paciente.FechaAlta = vLineas[3];               
-
-                //añadimos objeto a lista              
-                lista.Add(paciente);
-            }
-
             return lista;
         }
-
 
         public int CapturaEntero(string texto, int min, int max)
         {
@@ -139,7 +131,7 @@ namespace Clinica_Veterinaria_Completo1.servicios
             int valor;
             do
             {
-                Console.Write("{0} [{1}..{2}]:", texto, min, max);
+                Console.Write("\n\t\t{0} [{1}..{2}]:", texto, min, max);
                 esCorrecto = Int32.TryParse(Console.ReadLine(), out valor);
                 if (!esCorrecto)
                     Console.WriteLine("\n\n\t** Error: el valor introducido no es un número entero");
@@ -150,9 +142,23 @@ namespace Clinica_Veterinaria_Completo1.servicios
                 }
             } while (!esCorrecto);
             return valor;
+        }        
+
+        public void Error(string txt) 
+        {
+            Console.Write("\n\n\t\t{0}....", txt);
+            Console.ReadKey(true);
+        }
+            
+        
+        //muestra un mesaje y devuelve un string
+        private string Pedir(string mensaje)
+        {
+            Console.Write("\n\t\t{0}: ", mensaje);
+            return Console.ReadLine();
         }
 
-
+        //lanza una pregunta con respuesta [s/n] y devuelve un boolenao
         private bool PreguntaSiNo(string texto)
         {
             char letra;
@@ -171,18 +177,15 @@ namespace Clinica_Veterinaria_Completo1.servicios
 
             } while (true);
         }
-                
-        public void Error(string txt) 
-        {
-            Console.Write("\n\n\t\t{0}....", txt);
-            Console.ReadKey(true);
-        }
 
-        private string Pedir(string mensaje)
+        //pide la fecha y devuelve un string
+        private string PedirFecha(string tipoFecha)
         {
-            Console.Write("\n\t\t{0}: ", mensaje);
-            return Console.ReadLine();
-        }
+            int dia = CapturaEntero("Introduce el dia de " + tipoFecha, 1, 31);
+            int mes = CapturaEntero("Introduce el mes de " + tipoFecha, 1, 12);
+            int anio = CapturaEntero("Introduce el año de " + tipoFecha, 1888, 2050);
 
+            return String.Format("{0}-{1}-{2}", dia, mes, anio);
+        }
     }
 }

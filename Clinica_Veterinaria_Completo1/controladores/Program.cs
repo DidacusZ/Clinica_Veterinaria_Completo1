@@ -65,6 +65,7 @@ namespace Clinica_Veterinaria_Completo1
             }
 
             implPaciente.Error("Pulsa una tecla para SALIR");
-        }
+        }       
+        
     }
 }
